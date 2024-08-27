@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button } from 'react-native';
 import TodoItem from './TodoItem';
+import styles from '../Styles';
 
 export default function TodoList() {
     // State Hooks
@@ -32,7 +33,7 @@ export default function TodoList() {
 
     // Render TodoList Component
     return (
-        <View>
+        <View stylestyle={styles.todoMain}>
             {tasks.map(task => (
                 <TodoItem
                     key={task.id}

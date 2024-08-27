@@ -1,12 +1,17 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    
+    todoMain: {
+        marginTop: 30,
+        paddingTop:20,
+    },
+
     todoItem: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 8,
+        // marginTop: 30,
         padding: 8,
         borderWidth: 1,
         borderColor: '#ddd',
