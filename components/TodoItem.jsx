@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Checkbox from 'expo-checkbox';
-import styles from '../Styles.js';
+import styles from '../Styles';
 
 export default function TodoItem({ task, deleteTask, toggleCompleted }) {
     return (
@@ -10,6 +10,7 @@ export default function TodoItem({ task, deleteTask, toggleCompleted }) {
             <Checkbox
                 value={task.completed}
                 onValueChange={() => toggleCompleted(task.id)}
+                color={task.completed ? '#1e90ff' : undefined}
             />
             <Text style={[styles.todoItemText, task.completed && styles.completed]}>
                 {task.text}

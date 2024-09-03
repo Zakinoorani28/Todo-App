@@ -1,53 +1,62 @@
+// TodoList.jsx
 import React, { useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, FlatList } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import TodoItem from './TodoItem';
 import styles from '../Styles';
 
 export default function TodoList() {
-    // State Hooks
     const [tasks, setTasks] = useState([
         { id: 1, text: 'Doctor Appointment', completed: true },
         { id: 2, text: 'Meeting at School', completed: false },
     ]);
     const [text, setText] = useState('');
 
-    // Function to Add Task
-    function addTask() {
+    const addTask = () => {
         if (text.trim() === '') {
-            return; // Do nothing if input is empty
+            return;
         }
         const newTask = { id: Date.now(), text, completed: false };
         setTasks([...tasks, newTask]);
         setText('');
-    }
+    };
 
-    // Function to Delete Task
-    function deleteTask(id) {
+    const deleteTask = (id) => {
         setTasks(tasks.filter(task => task.id !== id));
-    }
+    };
 
-    // Function to Toggle Task Completion
-    function toggleCompleted(id) {
+    const toggleCompleted = (id) => {
         setTasks(tasks.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)));
-    }
+    };
 
-    // Render TodoList Component
     return (
-        <View stylestyle={styles.todoMain}>
-            {tasks.map(task => (
-                <TodoItem
-                    key={task.id}
-                    task={task}
-                    deleteTask={deleteTask}
-                    toggleCompleted={toggleCompleted}
+        <LinearGradient colors={['#00d4ff', '#8619c9']} style={styles.todoMain}>
+            <View style={styles.todoMain}>
+                <FlatList
+                    data={tasks}
+                    keyExtractor={item => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <TodoItem
+                            task={item}
+                            deleteTask={deleteTask}
+                            toggleCompleted={toggleCompleted}
+                        />
+                    )}
                 />
-            ))}
-            <TextInput
-                value={text}
-                onChangeText={setText}
-                placeholder="New Task"
-            />
-            <Button title="Add" onPress={addTask} />
-        </View>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={styles.TextInput}
+                        value={text}
+                        onChangeText={setText}
+                        placeholder="New Task"
+                    />
+                    <TouchableOpacity
+                        style={styles.addButton}
+                        onPress={addTask}>
+                        <Text style={styles.addButtonText}>Add</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </LinearGradient>
     );
 }
