@@ -1,8 +1,15 @@
 {
   "cli": {
-    "version": ">= 11.0.3"
+    "version": ">= 3.12.1"
   },
   "build": {
+    "production": {
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease",
+        "releaseChannel": "default"
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal"
@@ -15,10 +22,11 @@
       "android": {
         "buildType": "apk"
       }
-    },
-    "production": {}
+    }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {}
+    }
   }
 }
