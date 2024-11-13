@@ -1,4 +1,3 @@
-// components/TodoItem.jsx
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Checkbox from 'expo-checkbox';
